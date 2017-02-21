@@ -1,0 +1,19 @@
+Ruby Koans Notes:
+
+Test::Unit::Assertions
+  -learned about assertion syntax for testing
+
+Nil Class
+  -nil is an object in ruby
+
+Ruby Exceptions (begin rescue end)
+  one_thing => another_thing assigns key value pairs in a hash (hash rocket)
+
+    # THINK ABOUT IT:
+    #
+    # Is it better to use
+    #    obj.nil?
+    # or
+    #    obj == nil
+    # Why?
+only the object nil with return true to either of these statements
