@@ -9,11 +9,39 @@ Nil Class
 Ruby Exceptions (begin rescue end)
   one_thing => another_thing assigns key value pairs in a hash (hash rocket)
 
-    # THINK ABOUT IT:
-    #
-    # Is it better to use
-    #    obj.nil?
-    # or
-    #    obj == nil
-    # Why?
+  # THINK ABOUT IT:
+  #
+  # Is it better to use
+  #    obj.nil?
+  # or
+  #    obj == nil
+  # Why?
 only the object nil with return true to either of these statements
+  # THINK ABOUT IT:
+  # What pattern do the object IDs for small integers follow?
+
+Ruby Object Id's are based on C VALUES (which are pointers)
+For small integers (Fixnum) they are stored in the upper 31 bits, so there is a left shift,
+plus the lowest bit is used to mark that it is a Fixnum. http://archive.oreilly.com/pub/post/ruby_values_and_object_ids.html
+
+number | binary | leftshift | new number
+----------------------------------------
+0      | 0      | 01        | 1
+1      | 1      | 11        | 3
+2      | 10     | 101       | 5
+100    | 1100100| 11001001  | 201
+
+Array indexing vs fenceposting:
+When you access an array by index, those indices refer to the specific elements
+arr = ["one", "two", "three", "four"]
+arr[3] = "four"
+arr[4] = nil
+arr[4,0] = []
+arr[5,0] = nil
+
+Hashes
+fetch vs [] to access hash keys:
+[] will only return nil if the key doesn't exist
+fetch provides a few options including raising a KeyError exception, or returning a default value if key doesn't exist.
+
+ http://stackoverflow.com/questions/16569409/fetch-vs-when-working-with-hashes
