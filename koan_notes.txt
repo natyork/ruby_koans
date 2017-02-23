@@ -45,3 +45,38 @@ fetch vs [] to access hash keys:
 fetch provides a few options including raising a KeyError exception, or returning a default value if key doesn't exist.
 
  http://stackoverflow.com/questions/16569409/fetch-vs-when-working-with-hashes
+
+Private Methods:
+
+ class AccessPrivate
+    def a
+    end
+    private :a # a is private method
+
+    def accessing_private
+      a              # sure!
+      self.a         # nope! private methods cannot be called with an explicit receiver at all, even if that receiver is "self"
+      other_object.a # nope, a is private, you can't get it (but if it was protected, you could!)
+    end
+  end
+
+https://en.wikibooks.org/wiki/Ruby_Programming/Syntax/Classes#Private
+
+Explicit scoping on class definitions
+
+
+http://stackoverflow.com/questions/5464811/ruby-koans-explicit-scoping-on-a-class-definition-part-2
+
+When you define MyAnimals::Oyster you are still in the global scope, so ruby has no knowledge of the LEGS value set to 2 in MyAnimals because you never actually are in the scope of MyAnimals (a little counterintuitive).
+
+However, things would be different if you were to define Oyster this way:
+
+class MyAnimals
+  class Oyster < Animal
+    def legs_in_oyster
+      LEGS # => 2
+    end
+  end
+end
+
+The difference is that in the code above, by the time you define Oyster, you have dropped into the scope of MyAnimals, so ruby knows that LEGS refers to MyAnimals::LEGS (2) and not Animal::LEGS (4).
