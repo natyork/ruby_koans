@@ -80,3 +80,31 @@ class MyAnimals
 end
 
 The difference is that in the code above, by the time you define Oyster, you have dropped into the scope of MyAnimals, so ruby knows that LEGS refers to MyAnimals::LEGS (2) and not Animal::LEGS (4).
+
+A note on inheritence:
+If you have a sub class that has the same method as a super class,
+you can use the return value of the super method in your sub method, for example:
+
+class Dog
+  def bark
+    "woof"
+  end
+end
+
+class WeinerDog < Dog
+  def bark
+    super + " ...then run away" # will result in "woof ...then run away"
+  end
+end
+
+About Class Methods
+
+You can define methods on individual objects... ex:
+fido = Dog.new
+def fido.wag
+  :fidos_wag
+end
+
+Need some more review on singleton methods - see note in about_class_methods.rb
+
+
